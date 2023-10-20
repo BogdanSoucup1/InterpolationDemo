@@ -33,7 +33,7 @@ class Interpolator {
 }
 
 function onFrame(currentClick) {
-  document.getElementById('increaser').innerHTML = currentClick;
+  document.getElementById('interp').innerHTML = currentClick;
 }
 
 let interpolator = new Interpolator();

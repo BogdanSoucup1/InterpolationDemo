@@ -1,0 +1,9 @@
+.master-page {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+.master-page-children {
+  margin-top: 10px;
+}
