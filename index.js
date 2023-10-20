@@ -1,5 +1,3 @@
-let clicks = 0;
-
 class Interpolator {
   constructor() {
     this.interpolatedField = 0;
@@ -31,20 +29,3 @@ class Interpolator {
     setInterval(() => this.updateCounterField(this, onFrame), milisecondsUpdate);
   }
 }
-
-function onFrame(currentClick) {
-  document.getElementById('interp').innerHTML = currentClick;
-}
-
-let interpolator = new Interpolator();
-interpolator.startTimer(11, onFrame);
-
-function apiClicksCalls() {
-  interpolator.before_UpdateInterpolateMetadata(clicks);
-  if(clicks < 900) {
-    clicks += 10;
-  }
-  interpolator.after_UpdateInterpolationMetadata(clicks);
-}
-
-setInterval(apiClicksCalls, 1000);
