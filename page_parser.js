@@ -4,9 +4,9 @@ function onFrame(currentClick) {
   document.getElementById('interp').innerHTML = currentClick;
 }
 
-function apiClicksCalls(interpolator, clicksCount) {
+function apiClicksCalls(interpolator, clicksCount, endingAtCount) {
   interpolator.before_UpdateInterpolateMetadata(clicks);
-  if(clicks < 900) {
+  if(clicks < endingAtCount) {
     clicks += clicksCount;
   }
   document.getElementById('normal').innerHTML = clicks;
@@ -18,9 +18,10 @@ function clickData() {
   const clicksCount = parseInt(document.getElementById('click-dom').value)
   const samplingCount = parseInt(document.getElementById('sampling-dom').value)
   const apiCallCount = parseInt(document.getElementById('api-call-dom').value)
+  const endingAtCount = parseInt(document.getElementById('ending-at-dom').value)
 
   let interpolator = new Interpolator();
   interpolator.startTimer(samplingCount, onFrame);
 
-  setInterval(() => apiClicksCalls(interpolator, clicksCount), apiCallCount);
+  setInterval(() => apiClicksCalls(interpolator, clicksCount, endingAtCount), apiCallCount);
 }
