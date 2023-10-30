@@ -5,12 +5,11 @@ function onFrame(currentClick) {
 }
 
 function apiClicksCalls(interpolator, clicksCount, endingAtCount) {
-  interpolator.before_UpdateInterpolateMetadata(clicks);
   if(clicks < endingAtCount) {
     clicks += clicksCount;
   }
   document.getElementById('normal').innerHTML = clicks;
-  interpolator.after_UpdateInterpolationMetadata(clicks);
+  interpolator.updateStepField(clicks);
 }
 
 function clickData() {

@@ -6,23 +6,24 @@ class Interpolator {
     this.lastUpdateMS = 0;
   }
 
-  after_UpdateInterpolationMetadata(field) {
-    this.interpolatedField = field;
-  }
-
-  before_UpdateInterpolateMetadata(field) {
-    this.previousFieldUpdate = field;
+  updateStepField(field) {
+    this.previousFieldUpdate = this.interpolatedField;
     this.lastUpdateMS = this.currentUpdateMS;
     this.currentUpdateMS = Date.now();
+
+    this.interpolatedField = field;
   }
 
   updateCounterField(self) {
     const deltaMS = Date.now() - self.currentUpdateMS;
-    const percent = deltaMS / (self.currentUpdateMS - self.lastUpdateMS);
-    const diff = self.interpolatedField - self.previousFieldUpdate;
+    const previuousDeltaMS = self.currentUpdateMS - self.lastUpdateMS;
+    if(previuousDeltaMS) {
+      const percent = deltaMS / previuousDeltaMS;
+      const diff = self.interpolatedField - self.previousFieldUpdate;
 
-    const valueToShow = Math.floor(self.previousFieldUpdate + diff * percent);
-    onFrame(valueToShow);
+      const valueToShow = Math.floor(self.previousFieldUpdate + diff * percent);
+      onFrame(valueToShow);
+    }
   }
 
   startTimer(milisecondsUpdate, onFrame) {
